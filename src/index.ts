@@ -1,4 +1,4 @@
 import P5 from "p5";
-import RandomWalker from "./RandomWalker";
+import RandomWalkerMouse from "./RandomWalkerMouse";
 
-new P5(RandomWalker);
+new P5(RandomWalkerMouse);
