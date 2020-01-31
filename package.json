@@ -13,8 +13,11 @@
     "typescript": "^3.7.5"
   },
   "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-typescript-prettier": "^1.4.2",
     "parcel": "^1.12.4",
-    "parcel-bundler": "^1.6.1"
+    "parcel-bundler": "^1.6.1",
+    "prettier": "^1.19.1"
   },
   "keywords": []
 }
