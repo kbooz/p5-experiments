@@ -1,38 +1,35 @@
 import P5 from "p5";
 import Snake from "./Snake";
+import Food from "./Food";
+
+// https://www.youtube.com/watch?v=OMoVcohRgZA 12:55
 
 export default function SnakeGame(p: P5) {
   let snake: Snake;
-  const res = 10;
+  const res = 20;
+  let dimensions: P5.Vector;
+  let food: Food;
 
   p.setup = () => {
-    p.createCanvas(500, 500);
-    snake = new Snake(p);
+    p.createCanvas(400, 400);
+    dimensions = p.createVector(p.width / res, p.height / res);
+    p.frameRate(5);
+    snake = new Snake(p, dimensions);
+    food = new Food(p, dimensions);
   };
 
   p.keyPressed = () => {
-    switch (p.keyCode) {
-      case p.UP_ARROW:
-        snake.setDirection(0, -1);
-        break;
-      case p.DOWN_ARROW:
-        snake.setDirection(0, 1);
-        break;
-      case p.RIGHT_ARROW:
-        snake.setDirection(1, 0);
-        break;
-      case p.LEFT_ARROW:
-        snake.setDirection(-1, 0);
-        break;
-      default:
-        break;
-    }
+    snake.watchKeys();
   };
 
   p.draw = () => {
     p.background(51);
     p.scale(res);
-    snake.draw();
+    if (snake.eat(food.pos)) {
+      food = new Food(p, dimensions);
+    }
+    snake.update();
     snake.show();
+    food.show();
   };
 }
